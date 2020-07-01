@@ -1,0 +1,6 @@
+{
+  "jwtPrivateKey": "unsecureKey",
+  "db": "mongodb://seed-user:1234@cluster0-shard-00-00-rwpsm.mongodb.net:27017,cluster0-shard-00-01-rwpsm.mongodb.net:27017,cluster0-shard-00-02-rwpsm.mongodb.net:27017/teacher?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority",
+  "port": "3900",
+  "requiresAuth": false
+}
