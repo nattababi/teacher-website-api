@@ -59,11 +59,11 @@ router.delete("/:id", async (req, res) => {
   res.send(page);
 });
 
-router.get("/:id", validateObjectId, async (req, res) => {
-  const page = await Page.findById(req.params.id).select("-__v");
+router.get("/:name", validateObjectId, async (req, res) => {
+  const page = await Page.findById(req.params.name).select("-__v");
 
   if (!page)
-    return res.status(404).send("The pages with the given ID was not found.");
+    return res.status(404).send("The pages with the given name was not found.");
 
   res.send(page);
 });
