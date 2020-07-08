@@ -61,7 +61,7 @@ router.delete("/:id", async (req, res) => {
 router.get("/:page", async (req, res) => {
 
   //console.log('COMING VALUE:', req.params.page);
-  const page = await Page.findOne({ page: req.params.page }).select("*");
+  const page = await Page.findOne({ page: req.params.page }).select("-__v");
 
   if (!page)
     return res.status(404).send("The pages with the given 'page' was not found.");
