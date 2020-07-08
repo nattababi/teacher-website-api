@@ -7,7 +7,6 @@ const validateObjectId = require("../middleware/validateObjectId");
 
 
 router.get("/", async (req, res) => {
-  console.log('Get request');
   const pages = await Page.find()
     .select("-__v");
   res.send(pages);
@@ -17,7 +16,7 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
-  
+
   let page = new Page({
     page: req.body.page,
     text: req.body.text
@@ -29,7 +28,7 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   const { error } = validate(req.body);
-  
+
   if (error) return res.status(400).send(error.details[0].message);
 
   console.log('');
@@ -59,11 +58,13 @@ router.delete("/:id", async (req, res) => {
   res.send(page);
 });
 
-router.get("/:name", validateObjectId, async (req, res) => {
-  const page = await Page.findById(req.params.name).select("-__v");
+router.get("/:page", async (req, res) => {
+
+  //console.log('COMING VALUE:', req.params.page);
+  const page = await Page.findOne({ page: req.params.page }).select("*");
 
   if (!page)
-    return res.status(404).send("The pages with the given name was not found.");
+    return res.status(404).send("The pages with the given 'page' was not found.");
 
   res.send(page);
 });
